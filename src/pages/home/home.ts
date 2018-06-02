@@ -7,6 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  shouldShowCancel = true
+
   constructor(public navCtrl: NavController) {
 
   }
