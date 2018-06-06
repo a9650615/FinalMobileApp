@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { LoadingController } from 'ionic-angular';
+import { MovieDetailPage } from '../movie-detail/movie-detail';
 import Urls from '../../assets/urls';
 
 @Component({
@@ -11,8 +12,9 @@ import Urls from '../../assets/urls';
 export class HomePage {
 
   shouldShowCancel = true
-  private movie_list:any = []
-  private loader:any
+  public movie_list:any = []
+  public detailPage: any;
+  private loader:any;
 
   constructor(
     public navCtrl: NavController, 
@@ -22,6 +24,7 @@ export class HomePage {
         content: "讀取列表中",
         duration: 500
       });
+      this.detailPage = MovieDetailPage
   }
   
   ngOnInit() {

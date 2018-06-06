@@ -2,5 +2,6 @@ const baseUrl = 'http://localhost:3000';
 
 export default {
     list: `${baseUrl}/list`,
-    search: `${baseUrl}/search`
+    search: `${baseUrl}/search`,
+    detail: `${baseUrl}/detail`
 }

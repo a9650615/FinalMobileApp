@@ -6,7 +6,7 @@
 
 <ion-content padding start-y="55">
   <ion-list>
-    <ion-item *ngFor="let movie of movie_list">
+    <ion-item *ngFor="let movie of movie_list" [navPush]="detailPage" [navParams]="{data: movie}">
       <ion-thumbnail item-start>
         <img class="fit-thumbnail" src={{movie.img}}>
       </ion-thumbnail>

@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { SearchPage } from '../pages/search/search';
 import { CategoryPage } from '../pages/category/category';
 import { ContactPage } from '../pages/contact/contact';
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     MyApp,
+    MovieDetailPage,
     SearchPage,
     CategoryPage,
     ContactPage,
@@ -33,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MovieDetailPage,
     SearchPage,
     CategoryPage,
     ContactPage,

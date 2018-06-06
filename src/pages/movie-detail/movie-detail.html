@@ -1,0 +1,48 @@
+<!--
+  Generated template for the MovieDetailPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{movie.title}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-5>
+        <img src="{{movie.img}}">
+      </ion-col>
+      <ion-col>
+        <h4 ion-text color="gray">{{movie.title}}</h4>
+        <p ion-text color="gray">{{movie.long}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="comment-rank">
+      <ion-col>
+        <h4 ion-text color="primary">{{movie.good}}顆星</h4>
+        評分
+      </ion-col>
+      <ion-col>
+        <h4 ion-text color="primary">１則</h4>
+        評論
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="movie-summary" [ngClass]="{'show-all': showFullContent, 'show-part': !showFullContent}">
+        <div #summary>{{movie.summary}}</div>
+      </ion-col>
+    </ion-row>
+    <ion-row ng-show="showMore">
+      <ion-col>
+        <button ion-button clear (click)="showFullContent =! showFullContent">...{{showFullContent?'看更少':'看更多'}}</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

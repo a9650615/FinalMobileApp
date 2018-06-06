@@ -1,0 +1,17 @@
+page-movie-detail {
+    .comment-rank {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .movie-summary {
+        padding: 10px;
+        overflow-y: hidden;
+        &.show-all {
+            max-height: auto;
+        }
+        &.show-part{
+            max-height: 120px !important;
+        }
+    }
+}

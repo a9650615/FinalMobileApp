@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { MovieDetailPage } from '../movie-detail/movie-detail';
 import Urls from '../../assets/urls';
 
 /**
@@ -17,7 +18,9 @@ import Urls from '../../assets/urls';
 })
 export class SearchPage {
 
-  private movieList:any = []
+  public myInput:any;
+  public movieList:any = [];
+  public detailPage: any = MovieDetailPage;
 
   constructor(
     public navCtrl: NavController,
