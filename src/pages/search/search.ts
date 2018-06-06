@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { HttpClient } from '@angular/common/http';
+import Urls from '../../assets/urls';
 
 /**
  * Generated class for the SearchPage page.
@@ -15,7 +17,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class SearchPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private movieList:any = []
+
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private http: HttpClient) {
   }
 
   ionViewDidLoad() {
@@ -23,11 +30,17 @@ export class SearchPage {
   }
 
   onInput(e) {
-
   }
 
   onCancel(e) {
-    
+    this.movieList = []
+  }
+
+  search(value) {
+    this.http.get(`${Urls.search}/${value}`)
+      .subscribe((data) => {
+        this.movieList = data
+      })
   }
 
 }
