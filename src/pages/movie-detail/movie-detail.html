@@ -21,12 +21,13 @@
       </ion-col>
       <ion-col>
         <h4 ion-text color="gray">{{movie.title}}</h4>
+        <p ion-text color="gray">{{movie.eng_title}}</p>
         <p ion-text color="gray">{{movie.long}}</p>
       </ion-col>
     </ion-row>
     <ion-row class="comment-rank">
       <ion-col>
-        <h4 ion-text color="primary">{{movie.good}}顆星</h4>
+        <h4 ion-text color="primary">{{movie.good!=='0'? movie.good+'顆星':'沒有'}}</h4>
         評分
       </ion-col>
       <ion-col>
@@ -44,5 +45,24 @@
         <button ion-button clear (click)="showFullContent =! showFullContent">...{{showFullContent?'看更少':'看更多'}}</button>
       </ion-col>
     </ion-row>
+    <ion-row>
+      <ion-col>
+        <p style="text-align: center;">點一下來評分：</p>
+      </ion-col>
+      <ion-col>
+        <rating [(ngModel)]="rate" 
+            readOnly="false"
+            max="5"
+            emptyStarIconName="star-outline" 
+            halfStarIconName="star-half"
+            starIconName="star"
+            nullable="false"
+        >
+        </rating>
+      </ion-col>
+    </ion-row>
+    <p class="write-comment">
+      <button ion-button clear [navPush]="commentPage">撰寫評論</button>
+    </p>
   </ion-grid>
 </ion-content>

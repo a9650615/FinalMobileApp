@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { AddCommentPage } from '../add-comment/add-comment';
 import Urls from '../../assets/urls';
 
 /**
@@ -34,11 +35,16 @@ export class MovieDetailPage {
   };
   public showFullContent: boolean = false;
   public showMore: boolean = false;
+  public rate: any;
+  public commentPage: any = AddCommentPage;
+
   @ViewChild("summary") summaryEle: any;
   
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public viewCtrl: ViewController,
+    public plt: Platform,
     private http: HttpClient) {
   }
 
@@ -47,7 +53,9 @@ export class MovieDetailPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad MovieDetailPage');
+    if (this.plt.is('ios')) {
+      this.viewCtrl.setBackButtonText('回到列表')
+    }
     this.http.get(`${Urls.detail}/${this.movie.id}`)
       .subscribe((data: Movie) => {
         Object.assign(this.movie, data)

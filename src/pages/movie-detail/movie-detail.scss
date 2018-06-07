@@ -14,4 +14,23 @@ page-movie-detail {
             max-height: 120px !important;
         }
     }
+
+    ul {
+        padding: 0px;
+      
+        &.rating li {
+            padding: 0 !important;
+            margin: 0;
+            background: none;
+            color: #488aff;
+        
+            ion-icon {
+                font-size: 20px;
+            }
+        }
+    }
+
+    .write-comment {
+        margin: 0;
+    }
 }
