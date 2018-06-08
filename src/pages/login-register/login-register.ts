@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
+import { TabsPage } from '../tabs/tabs';
+import { Storage } from '@ionic/storage';
 import Urls from '../../assets/urls';
 
 /**
@@ -27,7 +29,8 @@ export class LoginRegisterPage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public http: HttpClient,
-    public toastCtrl: ToastController) {
+    public toastCtrl: ToastController,
+    public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -38,15 +41,31 @@ export class LoginRegisterPage {
     this.isLogin = !this.isLogin;
   }
 
-  sendData() {
-    this.http.post(Urls.register, this.input)
-      .subscribe(({status, data}: { status: string, data: any }) => {
-        if (status == 'failure') {
-          this.createToast(data)
-        } else {
-          this.createToast('註冊成功！')
-        }
-      })
+  async sendData() {
+    if (this.isLogin) {
+      this.http.post(Urls.login, this.input)
+        .subscribe(({status, data}: { status: string, data: any }) => {
+          if (status == 'failure') {
+            this.createToast(data)
+          } else {
+            this.createToast('登入成功！')
+            this.storage.set('userId', data.ID);
+            this.storage.set('lineID', data.lineID);
+            this.storage.set('isAdmin', data.isAdmin);
+            this.storage.set('name', data.name);
+            this.navCtrl.setRoot(TabsPage)
+          }
+        })
+    } else {
+      this.http.post(Urls.register, this.input)
+        .subscribe(({status, data}: { status: string, data: any }) => {
+          if (status == 'failure') {
+            this.createToast(data)
+          } else {
+            this.createToast('註冊成功！')
+          }
+        })
+    }
   }
 
   createToast(data) {
@@ -57,7 +76,6 @@ export class LoginRegisterPage {
     });
   
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
     });
   
     toast.present();

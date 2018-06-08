@@ -5,4 +5,5 @@ export default {
     search: `${baseUrl}/search`,
     detail: `${baseUrl}/detail`,
     register: `${baseUrl}/register`,
+    login: `${baseUrl}/login`,
 }

@@ -13,4 +13,9 @@
       @a9650615
     </ion-item>
   </ion-list>
+  <ion-list>
+    <button ion-item *ngFor="let option of options" (click)="selectOption(option.id)">
+      {{ option.text }}
+    </button>  
+  </ion-list>
 </ion-content>

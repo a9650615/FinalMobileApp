@@ -22,7 +22,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       const userId = await storage.get('userId');
-      const isAdmin = await storage.get('isAdmin');
+      // const lineID = await storage.get('lineID');
       if (userId) {
         this.nav.setRoot(TabsPage);
       } else {
