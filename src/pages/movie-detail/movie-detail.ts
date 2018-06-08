@@ -39,6 +39,7 @@ export class MovieDetailPage {
   public rate: any;
   public commentPage: any = AddCommentPage;
   public images: any = [];
+  public isStar: boolean = false;
 
   @ViewChild("summary") summaryEle: any;
   
@@ -61,12 +62,24 @@ export class MovieDetailPage {
     }
     this.http.get(`${Urls.detail}/${this.movie.id}`)
       .subscribe((data: Movie) => {
-        Object.assign(this.movie, data)
-        console.log(this.movie)
+        if (data) {
+          Object.assign(this.movie, data)
+          console.log(this.movie)
+        }
       })
     this.http.get(`${Urls.photos}/${this.movie.id}`)
       .subscribe((data) => {
         this.images = data;
+      })
+    this.storage.get('lineID')
+      .then((lineID) => {
+        this.http.post(`${Urls.getReact}`, {
+          lineID,
+          movieID: this.movie.id
+        })
+          .subscribe((data) => {
+            this.isStar = data.like
+          })
       })
   }
 
@@ -80,12 +93,27 @@ export class MovieDetailPage {
     this.storage.get('lineID')
       .then((lineID) => {
         if (lineID) {
-          console.log(lineID)
-          // this.http.post(Urls.star, {
-          //   lineId: 
-          // }).subscribe((data) => {
-      
-          // })
+          if (this.isStar) {
+            this.http.post(Urls.unstar, {
+              lineID,
+              movieName: this.movie.title,
+              movieID: this.movie.id
+            }).subscribe((data) => {
+              if (data.status === 'success') {
+                this.isStar = false;
+              }
+            })
+          } else {
+            this.http.post(Urls.star, {
+              lineID,
+              movieName: this.movie.title,
+              movieID: this.movie.id
+            }).subscribe((data) => {
+              if (data.status === 'success') {
+                this.isStar = true;
+              }
+            })
+          }
         }
       })
   }

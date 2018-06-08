@@ -8,5 +8,6 @@ export default {
     register: `${baseUrl}/register`,
     login: `${baseUrl}/login`,
     star: `${baseUrl}/star`,
-    unstar: `${baseUrl}/unstar`
+    unstar: `${baseUrl}/unstar`,
+    getReact: `${baseUrl}/getreact`
 }
