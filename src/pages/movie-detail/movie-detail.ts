@@ -77,7 +77,7 @@ export class MovieDetailPage {
           lineID,
           movieID: this.movie.id
         })
-          .subscribe((data) => {
+          .subscribe((data: {like: boolean}) => {
             this.isStar = data.like
           })
       })
@@ -98,9 +98,10 @@ export class MovieDetailPage {
               lineID,
               movieName: this.movie.title,
               movieID: this.movie.id
-            }).subscribe((data) => {
+            }).subscribe((data: {status: string}) => {
               if (data.status === 'success') {
                 this.isStar = false;
+                this.storage.set('update', true)
               }
             })
           } else {
@@ -108,9 +109,10 @@ export class MovieDetailPage {
               lineID,
               movieName: this.movie.title,
               movieID: this.movie.id
-            }).subscribe((data) => {
+            }).subscribe((data: {status: string}) => {
               if (data.status === 'success') {
                 this.isStar = true;
+                this.storage.set('update', true)
               }
             })
           }
