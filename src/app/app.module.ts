@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
+import { LoginRegisterPage } from '../pages/login-register/login-register';
 import { AddCommentPage } from '../pages/add-comment/add-comment';
 import { MovieDetailPage } from '../pages/movie-detail/movie-detail';
 import { SearchPage } from '../pages/search/search';
@@ -22,6 +23,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 @NgModule({
   declarations: [
     MyApp,
+    LoginRegisterPage,
     MovieDetailPage,
     AddCommentPage,
     SearchPage,
@@ -40,6 +42,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginRegisterPage,
     MovieDetailPage,
     AddCommentPage,
     SearchPage,

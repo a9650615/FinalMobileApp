@@ -1,0 +1,36 @@
+<!--
+  Generated template for the LoginRegisterPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+
+<ion-content padding no-bounce>
+  <h1 ion-text style="color: #427df4; text-align: center; margin-top: 100px;">電影小幫手 EX</h1>
+  <ion-list class="account-aria">
+    <ion-item *ngIf="!isLogin">
+      <ion-label color="primary" stacked>Line 綁定 ID</ion-label>
+      <ion-input [(ngModel)]="input.lineID" type="text" placeholder="輸入綁定ID"></ion-input>
+    </ion-item>
+    
+    <ion-item *ngIf="!isLogin">
+      <ion-label color="primary" stacked>名稱</ion-label>
+      <ion-input [(ngModel)]="input.name" type="email" placeholder="輸入你的名稱"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" stacked>帳號</ion-label>
+      <ion-input [(ngModel)]="input.account" type="email" placeholder="輸入帳號"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label color="primary" stacked>密碼</ion-label>
+      <ion-input [(ngModel)]="input.password" type="password" placeholder="輸入密碼"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div style="text-align: center;">
+    <a href="#" (click)="toggleLoginRegister($event)">{{isLogin?'尚未有會員?':'登入頁面'}}</a>
+  </div>
+  <button ion-button full (click)="sendData()">{{isLogin?'登入':'註冊'}}</button>
+</ion-content>
