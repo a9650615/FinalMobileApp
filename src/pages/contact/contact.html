@@ -10,7 +10,10 @@
   <ion-list>
     <ion-list-header>關於我</ion-list-header>
     <ion-item>
-      @a9650615
+      @{{userName}}
+    </ion-item>
+    <ion-item>
+      {{isAdmin?'您為管理員': '您非管理員'}}
     </ion-item>
   </ion-list>
   <ion-list>

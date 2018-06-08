@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { AddCommentPage } from '../add-comment/add-comment';
+import { Storage } from '@ionic/storage';
 import Urls from '../../assets/urls';
 
 /**
@@ -37,6 +38,7 @@ export class MovieDetailPage {
   public showMore: boolean = false;
   public rate: any;
   public commentPage: any = AddCommentPage;
+  public images: any = [];
 
   @ViewChild("summary") summaryEle: any;
   
@@ -45,6 +47,7 @@ export class MovieDetailPage {
     public navParams: NavParams,
     public viewCtrl: ViewController,
     public plt: Platform,
+    public storage: Storage,
     private http: HttpClient) {
   }
 
@@ -61,12 +64,30 @@ export class MovieDetailPage {
         Object.assign(this.movie, data)
         console.log(this.movie)
       })
+    this.http.get(`${Urls.photos}/${this.movie.id}`)
+      .subscribe((data) => {
+        this.images = data;
+      })
   }
 
   ngAfterViewChecked() {
     if (this.summaryEle.nativeElement.clientHeight > 120) {
       this.showMore = true;
     }
+  }
+
+  starMovie() {
+    this.storage.get('lineID')
+      .then((lineID) => {
+        if (lineID) {
+          console.log(lineID)
+          // this.http.post(Urls.star, {
+          //   lineId: 
+          // }).subscribe((data) => {
+      
+          // })
+        }
+      })
   }
 
 }

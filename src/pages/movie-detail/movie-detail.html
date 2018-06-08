@@ -8,14 +8,19 @@
 
   <ion-navbar>
     <ion-title>{{movie.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="starMovie($event)" >
+        <ion-icon name="star-outline"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-grid>
-    <ion-row>
+    <ion-row padding>
       <ion-col col-5>
         <img src="{{movie.img}}">
       </ion-col>
@@ -25,7 +30,12 @@
         <p ion-text color="gray">{{movie.long}}</p>
       </ion-col>
     </ion-row>
-    <ion-row class="comment-rank">
+    <ion-scroll scrollX="true" style="width:100%; height:200px" >
+      <ion-row nowrap>
+        <img *ngFor="let image of images" class="image" src="{{image.src}}" />
+      </ion-row>
+    </ion-scroll>
+    <ion-row padding class="comment-rank">
       <ion-col>
         <h4 ion-text color="primary">{{movie.good!=='0'? movie.good+'顆星':'沒有'}}</h4>
         評分
@@ -35,17 +45,17 @@
         評論
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row padding>
       <ion-col class="movie-summary" [ngClass]="{'show-all': showFullContent, 'show-part': !showFullContent}">
         <div #summary>{{movie.summary}}</div>
       </ion-col>
     </ion-row>
-    <ion-row ng-show="showMore">
+    <ion-row padding ng-show="showMore">
       <ion-col>
         <button ion-button clear (click)="showFullContent =! showFullContent">...{{showFullContent?'看更少':'看更多'}}</button>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <ion-row padding>
       <ion-col>
         <p style="text-align: center;">點一下來評分：</p>
       </ion-col>

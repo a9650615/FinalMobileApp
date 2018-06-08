@@ -4,6 +4,9 @@ export default {
     list: `${baseUrl}/list`,
     search: `${baseUrl}/search`,
     detail: `${baseUrl}/detail`,
+    photos: `${baseUrl}/photos`,
     register: `${baseUrl}/register`,
     login: `${baseUrl}/login`,
+    star: `${baseUrl}/star`,
+    unstar: `${baseUrl}/unstar`
 }

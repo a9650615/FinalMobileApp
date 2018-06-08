@@ -57,6 +57,10 @@ export class LoginRegisterPage {
           }
         })
     } else {
+      if (this.input.lineID) {
+        this.input.lineID = atob(this.input.lineID)
+        // decode line id
+      }
       this.http.post(Urls.register, this.input)
         .subscribe(({status, data}: { status: string, data: any }) => {
           if (status == 'failure') {
