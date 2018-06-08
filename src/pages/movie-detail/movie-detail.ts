@@ -40,6 +40,7 @@ export class MovieDetailPage {
   public commentPage: any = AddCommentPage;
   public images: any = [];
   public isStar: boolean = false;
+  public comments: any = [];
 
   @ViewChild("summary") summaryEle: any;
   
@@ -77,8 +78,9 @@ export class MovieDetailPage {
           lineID,
           movieID: this.movie.id
         })
-          .subscribe((data: {like: boolean}) => {
+          .subscribe((data: {like: boolean, comments: Array<any>}) => {
             this.isStar = data.like
+            this.comments = data.comments
           })
       })
   }
@@ -120,8 +122,18 @@ export class MovieDetailPage {
       })
   }
 
-  updateComment() {
-    console.log('update comment list')
+  updateComment = () => {
+    this.storage.get('lineID')
+      .then((lineID) => {
+        this.http.post(`${Urls.getReact}`, {
+          lineID,
+          movieID: this.movie.id
+        })
+          .subscribe((data: {like: boolean, comments: Array<any>}) => {
+            this.isStar = data.like
+            this.comments = data.comments
+          })
+      })
   }
 
 }

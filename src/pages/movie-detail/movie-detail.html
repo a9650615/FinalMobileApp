@@ -29,6 +29,7 @@
         <p ion-text color="gray">{{movie.eng_title}}</p>
         <p ion-text color="gray">{{movie.long}}</p>
         <p ion-text color="gray">導演：{{movie.director}}</p>
+        <p ion-text color="gray">{{movie.upTime}}</p>
       </ion-col>
     </ion-row>
     <ion-scroll scrollX="true" style="width:100%; height: 210px;" >
@@ -42,7 +43,7 @@
         評分
       </ion-col>
       <ion-col>
-        <h4 ion-text color="primary">１則</h4>
+        <h4 ion-text color="primary">{{(comments||[]).length}}則</h4>
         評論
       </ion-col>
     </ion-row>
@@ -56,7 +57,7 @@
         <button ion-button clear (click)="showFullContent =! showFullContent">...{{showFullContent?'看更少':'看更多'}}</button>
       </ion-col>
     </ion-row>
-    <ion-row>
+    <!-- <ion-row>
       <ion-col>
         <p style="text-align: center;">點一下來評分：</p>
       </ion-col>
@@ -71,10 +72,17 @@
         >
         </rating>
       </ion-col>
-    </ion-row>
+    </ion-row> -->
     <p class="write-comment">
       <button ion-button clear [navPush]="commentPage" [navParams]="{data: movie, update: updateComment}">撰寫評論</button>
     </p>
+    <ion-scroll scrollX="true" style="width:100%; height: 150px;" >
+      <ion-row nowrap>
+        <div class="comment-block" *ngFor="let comment of comments">
+          {{ comment.comment }}
+        </div>
+      </ion-row>
+    </ion-scroll>
   </ion-grid>
   <ion-row padding>
     <ion-col>

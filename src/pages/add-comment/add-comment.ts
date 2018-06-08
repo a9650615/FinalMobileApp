@@ -46,10 +46,10 @@ export class AddCommentPage {
         comment: this.comment
       })
       .subscribe(() => {
+        this.navParams.get('update')()
         this.loader.present()
         this.navCtrl.pop()
       })
-      this.navParams.get('update')()
     })
   }
 }
