@@ -1889,6 +1889,10 @@ ionic-angular@3.9.2:
   version "3.9.2"
   resolved "https://registry.yarnpkg.com/ionic-angular/-/ionic-angular-3.9.2.tgz#75053e4a422aaae7d7cd668cc92cfd5cb29d38cc"
 
+ionic-img-viewer@^2.9.0:
+  version "2.9.0"
+  resolved "https://registry.yarnpkg.com/ionic-img-viewer/-/ionic-img-viewer-2.9.0.tgz#184b578131103f9de2817f106c3eeb1dd56378b7"
+
 ionic2-rating@^1.2.2:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/ionic2-rating/-/ionic2-rating-1.2.2.tgz#e59f459c6445dea9569301c22ba8938af07658e6"

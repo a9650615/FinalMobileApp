@@ -32,7 +32,7 @@
     </ion-row>
     <ion-scroll scrollX="true" style="width:100%; height:200px" >
       <ion-row nowrap>
-        <img *ngFor="let image of images" class="image" src="{{image.src}}" />
+        <img imageViewer *ngFor="let image of images" class="image" src="{{image.src}}" />
       </ion-row>
     </ion-scroll>
     <ion-row padding class="comment-rank">
@@ -45,17 +45,17 @@
         評論
       </ion-col>
     </ion-row>
-    <ion-row padding>
+    <ion-row padding style="padding-bottom: 3px;">
       <ion-col class="movie-summary" [ngClass]="{'show-all': showFullContent, 'show-part': !showFullContent}">
         <div #summary>{{movie.summary}}</div>
       </ion-col>
     </ion-row>
-    <ion-row padding ng-show="showMore">
+    <ion-row ng-show="showMore">
       <ion-col>
         <button ion-button clear (click)="showFullContent =! showFullContent">...{{showFullContent?'看更少':'看更多'}}</button>
       </ion-col>
     </ion-row>
-    <ion-row padding>
+    <ion-row>
       <ion-col>
         <p style="text-align: center;">點一下來評分：</p>
       </ion-col>

@@ -19,6 +19,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
 import { HttpClientModule } from '@angular/common/http';
 import { Ionic2RatingModule } from 'ionic2-rating';
+import { IonicImageViewerModule } from 'ionic-img-viewer';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
     TabsPage
   ],
   imports: [
+    IonicImageViewerModule,
     Ionic2RatingModule,
     HttpClientModule,
     BrowserModule,
