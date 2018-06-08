@@ -120,4 +120,8 @@ export class MovieDetailPage {
       })
   }
 
+  updateComment() {
+    console.log('update comment list')
+  }
+
 }

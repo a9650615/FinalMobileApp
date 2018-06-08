@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>撰寫評論</ion-title>
     <ion-buttons end>
-      <button ion-button icon-only>
+      <button ion-button icon-only (click)="publish()">
         發佈
       </button>
     </ion-buttons>
@@ -19,5 +19,5 @@
 
 
 <ion-content padding>
-  <ion-textarea placeholder="寫入你的想法"></ion-textarea>
+  <ion-textarea [(ngModel)]="comment" placeholder="寫入你的想法"></ion-textarea>
 </ion-content>

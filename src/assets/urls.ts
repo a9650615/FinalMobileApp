@@ -1,6 +1,7 @@
 const baseUrl = 'http://localhost:3000';
 
 export default {
+    comment: `${baseUrl}/comment`,
     favorite: `${baseUrl}/favorite`,
     list: `${baseUrl}/list`,
     search: `${baseUrl}/search`,

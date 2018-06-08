@@ -73,7 +73,7 @@
       </ion-col>
     </ion-row>
     <p class="write-comment">
-      <button ion-button clear [navPush]="commentPage">撰寫評論</button>
+      <button ion-button clear [navPush]="commentPage" [navParams]="{data: movie, update: updateComment}">撰寫評論</button>
     </p>
   </ion-grid>
   <ion-row padding>
