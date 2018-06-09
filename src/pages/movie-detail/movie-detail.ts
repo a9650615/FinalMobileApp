@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, ViewController, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController, Platform, ToastController } from 'ionic-angular';
 import { HttpClient } from '@angular/common/http';
 import { AddCommentPage } from '../add-comment/add-comment';
 import { Storage } from '@ionic/storage';
@@ -40,7 +40,9 @@ export class MovieDetailPage {
   public commentPage: any = AddCommentPage;
   public images: any = [];
   public isStar: boolean = false;
+  public isAdmin: boolean = false;
   public comments: any = [];
+  public news: string = null;
 
   @ViewChild("summary") summaryEle: any;
   
@@ -50,6 +52,7 @@ export class MovieDetailPage {
     public viewCtrl: ViewController,
     public plt: Platform,
     public storage: Storage,
+    public toastCtrl: ToastController,
     private http: HttpClient) {
   }
 
@@ -61,6 +64,12 @@ export class MovieDetailPage {
     if (this.plt.is('ios')) {
       this.viewCtrl.setBackButtonText('回到列表')
     }
+    // get is admin
+    this.storage.get('isAdmin').then((isAdmin) => {
+      if (isAdmin) {
+        this.isAdmin = isAdmin
+      }
+    })
     this.http.get(`${Urls.detail}/${this.movie.id}`)
       .subscribe((data: Movie) => {
         if (data) {
@@ -71,6 +80,12 @@ export class MovieDetailPage {
     this.http.get(`${Urls.photos}/${this.movie.id}`)
       .subscribe((data) => {
         this.images = data;
+      })
+    this.http.get(`${Urls.news}/${this.movie.id}`)
+      .subscribe((data) => {
+        if (data.length > 0) {
+          this.news = data[0].content
+        }
       })
     this.storage.get('lineID')
       .then((lineID) => {
@@ -134,6 +149,37 @@ export class MovieDetailPage {
             this.comments = data.comments
           })
       })
+  }
+
+  createNews() {
+    this.storage.get('lineID')
+      .then((lineID) => {
+        this.http.post(Urls.news, {
+          lineID,
+          news: this.news,
+          movieID: this.movie.id,
+        })
+          .subscribe((data) => {
+            if (data.status === 'success') {
+              this.presentToast(data.data)
+            } else {
+              this.presentToast(`發生錯誤`)
+            }
+          })
+      })
+  }
+
+  presentToast(data) {
+    let toast = this.toastCtrl.create({
+      message: data,
+      duration: 3000,
+      position: 'bottom'
+    });
+  
+    toast.onDidDismiss(() => {
+    });
+  
+    toast.present();
   }
 
 }

@@ -13,7 +13,7 @@ import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
 /* modules  */
-import { MovieDetailPageModule } from '../pages/movie-detail/movie-detail.module';
+// import { MovieDetailPageModule } from '../pages/movie-detail/movie-detail.module';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';

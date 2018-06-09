@@ -1,6 +1,7 @@
 const baseUrl = 'http://192.168.1.8:3000';
 
 export default {
+    news: `${baseUrl}/news`,
     comment: `${baseUrl}/comment`,
     favorite: `${baseUrl}/favorite`,
     list: `${baseUrl}/list`,

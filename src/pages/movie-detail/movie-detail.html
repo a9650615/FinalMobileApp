@@ -32,6 +32,17 @@
         <p ion-text color="gray">{{movie.upTime}}</p>
       </ion-col>
     </ion-row>
+    <button *ngIf="isAdmin" ion-button clear (click)="createNews()">新增新聞</button>
+    <ion-row padding *ngIf="isAdmin">
+      <ion-col class="news-input">
+        <ion-textarea [(ngModel)]="news" placeholder="寫入新聞"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <ion-row padding *ngIf="!isAdmin&&news!=null">
+      <ion-col class="news">
+        活動訊息: {{news}}
+      </ion-col>
+    </ion-row>
     <ion-scroll scrollX="true" style="width:100%; height: 210px;" >
       <ion-row nowrap>
         <img imageViewer *ngFor="let image of images" class="image" src="{{image.src}}" />
