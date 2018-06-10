@@ -1,4 +1,4 @@
-const baseUrl = 'http://192.168.1.8:3000';
+const baseUrl = 'http://chatbot.birdyo.ga';
 
 export default {
     news: `${baseUrl}/news`,

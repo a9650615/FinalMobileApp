@@ -78,11 +78,11 @@ export class MovieDetailPage {
         }
       })
     this.http.get(`${Urls.photos}/${this.movie.id}`)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         this.images = data;
       })
     this.http.get(`${Urls.news}/${this.movie.id}`)
-      .subscribe((data) => {
+      .subscribe((data: any) => {
         if (data.length > 0) {
           this.news = data[0].content
         }
@@ -159,7 +159,7 @@ export class MovieDetailPage {
           news: this.news,
           movieID: this.movie.id,
         })
-          .subscribe((data) => {
+          .subscribe((data: any) => {
             if (data.status === 'success') {
               this.presentToast(data.data)
             } else {
